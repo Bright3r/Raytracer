@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include "consts.hpp"
 #include "Entity.cpp"
 
@@ -17,4 +18,5 @@ class RenderWindow {
     void clearScreen();
     void renderEntity(Entity& ent);
     void present();
+    void drawMap(std::vector<std::vector<char>>& map, int tile_size);
 };

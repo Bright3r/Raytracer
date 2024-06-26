@@ -67,3 +67,26 @@ void RenderWindow::renderEntity(Entity& ent) {
 void RenderWindow::present() {
   SDL_RenderPresent(this->renderer);
 }
+
+
+void RenderWindow::drawMap(std::vector<std::vector<char>>& map, int tile_size) {
+  for (int i = 0; i < map.size(); i++) {
+    for (int j = 0; j < map[0].size(); j++) {
+      if (map[i][j]) {
+        SDL_Rect rect;
+        rect.x = i * tile_size;
+        rect.y = j * tile_size;
+        rect.w = tile_size;
+        rect.h = tile_size;
+
+        this->setDrawColor(&COLOR_GREEN);
+        SDL_RenderFillRect(this->renderer, &rect);
+      }
+    }
+  }
+}
+
+
+
+
+

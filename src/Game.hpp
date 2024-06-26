@@ -2,11 +2,14 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include "consts.hpp"
 #include "RenderWindow.cpp"
+#include "Player.cpp"
+
 
 class Game {
   RenderWindow *window;

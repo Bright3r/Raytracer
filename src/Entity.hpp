@@ -8,6 +8,7 @@ class Entity {
     SDL_Rect *rect;
     SDL_Color *color;
 
-    Entity();
+    Entity(int x, int y, int width, int height, SDL_Color *color);
     ~Entity();
+    void update();
 };
