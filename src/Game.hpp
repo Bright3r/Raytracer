@@ -19,4 +19,6 @@ class Game {
     ~Game();
     void loop();
     float getElapsedTime(uint32_t last_time);
+    bool checkCollision(std::vector<std::vector<char>>& map, Entity& ent);
+    bool checkCollision(SDL_Rect& r1, SDL_Rect& r2);
 };

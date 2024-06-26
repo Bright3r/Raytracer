@@ -89,6 +89,7 @@ void Game::loop() {
     }
 
     player.update();
+    checkCollision(map, player);
 
     this->window->clearScreen();
     this->window->drawMap(map, TILE_SIZE);
@@ -98,6 +99,41 @@ void Game::loop() {
     // Cap framerate
     SDL_Delay(std::floor(FRAME_INTERVAL - getElapsedTime(start_time)));
   }
+}
+
+
+bool Game::checkCollision(std::vector<std::vector<char>>& map, Entity& ent) {
+  for (long unsigned int i = 0; i < map.size(); i++) {
+    for (long unsigned int j = 0; j < map[0].size(); j++) {
+      if (!map[i][j]) continue;
+      
+      SDL_Rect rect;
+      rect.x = i * TILE_SIZE;
+      rect.y = j * TILE_SIZE;
+      rect.w = TILE_SIZE;
+      rect.h = TILE_SIZE;
+
+      if (checkCollision(rect, *ent.rect)) {
+        ent.color = &COLOR_YELLOW;
+        return true;
+      }
+    }
+  }
+
+  ent.color = &COLOR_RED;
+  return false;
+}
+
+
+bool Game::checkCollision(SDL_Rect& r1, SDL_Rect& r2) {
+  if (r1.x + r1.w < r2.x || r2.x + r2.w < r1.x) {
+    return false;
+  }
+  if (r1.y + r1.h < r2.y || r2.y + r2.h < r1.y) {
+    return false;
+  }
+
+  return true; 
 }
 
 
